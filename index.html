@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>小星球學堂 Little Planet Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <img src="images/unnamed.png" alt="小星球學堂 Logo" class="nav-logo-img" />
+    Little Planet
+    <span>小星球學堂</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#philosophy">教育理念</a></li>
+    <li><a href="#story">我的故事</a></li>
+    <li><a href="#experience">工作經驗</a></li>
+    <li><a href="#volunteer">社會參與</a></li>
+    <li><a href="https://lin.ee/rgSSGG2" target="_blank" class="nav-cta">加入 Line</a></li>
+  </ul>
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="#philosophy" onclick="toggleMenu()">教育理念</a>
+  <a href="#story" onclick="toggleMenu()">我的故事</a>
+  <a href="#experience" onclick="toggleMenu()">工作經驗</a>
+  <a href="#volunteer" onclick="toggleMenu()">社會參與</a>
+  <a href="https://lin.ee/rgSSGG2" target="_blank" onclick="toggleMenu()">加入官方 Line</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="planets-layer">
+    <div class="planet p1"></div>
+    <div class="planet p2"></div>
+    <div class="planet p3"></div>
+    <div class="planet p4"></div>
+    <div class="planet p5"></div>
+  </div>
+  <div class="hero-left">
+    <p class="hero-eyebrow">Little Planet Academy</p>
+    <h1 class="hero-title">每個孩子都是<br><em>獨一無二</em>的星球</h1>
+    <p class="hero-subtitle">小星球學堂</p>
+    <p class="hero-desc">
+      透過多元體驗與探索，讓孩子在快樂中成長。<br>
+      發現屬於自己的光芒，走出屬於自己的路。
+    </p>
+    <div class="hero-actions">
+      <a href="https://lin.ee/rgSSGG2" target="_blank" class="btn-main">加入官方 Line</a>
+      <a href="#philosophy" class="btn-ghost">了解更多</a>
+    </div>
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+      <span class="scroll-text">Scroll</span>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophy">
+  <div class="phi-img-col">
+    <div class="img-fill">
+      <!-- 替換圖片：課程/活動照片，建議尺寸 800×900px -->
+      <img src="images/philosophy.jpg" alt="教育理念" />
+    </div>
+  </div>
+  <div class="phi-content reveal">
+    <p class="section-label">Philosophy</p>
+    <h2 class="section-h2">我的<em>教育</em>理念</h2>
+    <p class="section-body">透過精心設計的活動與遊戲，讓學習成為一件快樂的事。引導孩子學會分析、動手操作，培養解決問題的能力。</p>
+    <div class="phi-principles">
+      <div class="phi-item">
+        <span class="phi-num">01.</span>
+        <div>
+          <h3>多元探索</h3>
+          <p>透過不同領域的體驗，讓孩子在探索中反思成長，培養多面向的思考能力。</p>
+        </div>
+      </div>
+      <div class="phi-item">
+        <span class="phi-num">02.</span>
+        <div>
+          <h3>快樂學習</h3>
+          <p>精心設計的活動與遊戲，讓孩子在面對挑戰時學會分析、動手操作，找到解決問題的方法。</p>
+        </div>
+      </div>
+      <div class="phi-item">
+        <span class="phi-num">03.</span>
+        <div>
+          <h3>認識自己</h3>
+          <p>在過程中發掘興趣，深入認識自己、理解這個世界，找到屬於自己的方向。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="story-inner">
+    <div class="story-top">
+      <div class="reveal">
+        <p class="section-label">My Story</p>
+        <h2 class="section-h2">走過的路<br><em>成為了風景</em></h2>
+        <p class="section-body">
+          我是一個熱愛體驗與學習的人。一路走來，嘗試了許多不同的事物，在探索中逐漸找到最真實、最喜歡的自己。
+          <br><br>
+          正因如此，我想將這份感動傳遞出去，陪伴更多孩子走上屬於他們的探索之旅。
+        </p>
+      </div>
+      <div class="story-quote-block reveal">
+        「有厚度的生命，<br>需要不斷的探索與累積。」
+      </div>
+    </div>
+    <div class="story-photos reveal">
+      <div class="story-photo wide">
+        <!-- 橫版照片，建議尺寸 1200×675px (16:9) -->
+        <img src="images/story-01.jpg" alt="故事照片 1" />
+      </div>
+      <div class="story-photo">
+        <!-- 橫版照片，建議尺寸 600×340px (16:9) -->
+        <img src="images/story-02.jpg" alt="故事照片 2" />
+      </div>
+      <div class="story-photo">
+        <!-- 橫版照片，建議尺寸 600×340px (16:9) -->
+        <img src="images/story-03.jpg" alt="故事照片 3" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE BANNER -->
+<section class="quote-banner">
+  <div class="planets-layer">
+    <div class="planet p1"></div>
+    <div class="planet p2"></div>
+    <div class="planet p3"></div>
+    <div class="planet p4"></div>
+  </div>
+  <blockquote class="reveal" style="position:relative;z-index:2;">
+    「走過朝聖之路，讓我學會尊重每個人的<br>步調，也重新理解陪伴的意義。」
+  </blockquote>
+  <cite class="reveal" style="position:relative;z-index:2;">— Camino de Santiago</cite>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="exp-inner">
+    <div class="exp-header reveal">
+      <p class="section-label">Experience</p>
+      <h2 class="section-h2">工作<em>歷程</em></h2>
+      <p class="section-body">每段經歷，都讓我成為更好的教育工作者。</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-line"></div>
+      <div class="timeline-entries">
+        <div class="t-entry reveal">
+          <div class="t-year">2019 — 2025</div>
+          <div class="t-body">
+            <h3>實驗教育機構・班導師</h3>
+            <p>透過多元主題課程（海洋、濕地、糧食、台灣製造業等）引導學生實作與實地踏查，培養問題解決、批判思考及土地關懷等能力。帶領學生單車環島與百岳挑戰，引導孩子在高強度任務中建立自信與責任感。</p>
+          </div>
+        </div>
+        <div class="t-entry reveal">
+          <div class="t-year">2018 — 2019</div>
+          <div class="t-body">
+            <h3>澳洲打工度假</h3>
+            <p>在不同環境中學習適應、嘗試新事物，培養自己擁有一顆更開放、全面的心。</p>
+          </div>
+        </div>
+        <div class="t-entry reveal">
+          <div class="t-year">2017 — 2018</div>
+          <div class="t-body">
+            <h3>國民小學・班導師</h3>
+            <p>從帶班中學習如何因材施教、班級經營，從活動中讓孩子學習情意方面的能力。</p>
+          </div>
+        </div>
+        <div class="t-entry reveal">
+          <div class="t-year">2016 — 2017</div>
+          <div class="t-body">
+            <h3>國民小學・實習老師</h3>
+            <p>跟班學習如何處理學生間問題、教學方面技巧，學習如何經營好一個班級。</p>
+          </div>
+        </div>
+        <div class="t-entry reveal">
+          <div class="t-year">2016</div>
+          <div class="t-body">
+            <h3>數位學伴・偏鄉課輔老師</h3>
+            <p>用電腦遠端教學，學習如何讓教學活潑有趣化，讓孩子投入其中。</p>
+          </div>
+        </div>
+        <div class="t-entry reveal">
+          <div class="t-year">2015 — 2016</div>
+          <div class="t-body">
+            <h3>永齡希望小學・偏鄉課輔老師</h3>
+            <p>學習個別化教學與混齡教學，如何使學習動機低落的孩子產生學習動機。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOLUNTEER -->
+<section class="volunteer" id="volunteer">
+  <div class="vol-inner">
+    <div class="vol-header reveal">
+      <p class="section-label">Volunteer</p>
+      <h2 class="section-h2">社會參與<br><em>志工經歷</em></h2>
+      <p class="section-body">走在路上，也走向自己。</p>
+    </div>
+    <div class="vol-layout">
+      <!-- 左：照片輪播 -->
+      <div class="vol-carousel reveal">
+        <div class="vol-carousel-track">
+          <!-- 放入任意數量的志工照片，尺寸不限，會自適應 -->
+          <img src="images/vol-01.jpg" alt="志工照片 1" />
+          <img src="images/vol-02.jpg" alt="志工照片 2" />
+          <img src="images/vol-03.jpg" alt="志工照片 3" />
+          <img src="images/vol-04.jpg" alt="志工照片 4" />
+          <img src="images/vol-05.jpg" alt="志工照片 5" />
+        </div>
+        <div class="vol-carousel-nav">
+          <button class="vol-carousel-btn vol-prev" aria-label="上一張">&#8592;</button>
+          <span class="vol-carousel-counter"></span>
+          <button class="vol-carousel-btn vol-next" aria-label="下一張">&#8594;</button>
+        </div>
+      </div>
+
+      <!-- 右：文字卡片 -->
+      <div class="vol-cards">
+        <div class="vol-card reveal">
+          <p class="vol-tag">Summer Camp</p>
+          <h3>暑期公益兒童夏令營</h3>
+          <p>從營隊中帶著孩子上課、遊戲，彼此互動所產生的情感很令人動容。</p>
+        </div>
+        <div class="vol-card reveal">
+          <p class="vol-tag">International</p>
+          <h3>國際志工——柬埔寨</h3>
+          <p>不同以往環境下進行音樂教學，體會不同語言、環境下相同的愛與互動。</p>
+        </div>
+        <div class="vol-card reveal">
+          <p class="vol-tag">Camp</p>
+          <h3>心靈捕手營隊</h3>
+          <p>擔任企劃組與隊輔，設計活動引導孩子探索內心世界。</p>
+        </div>
+        <div class="vol-card reveal">
+          <p class="vol-tag">Marathon</p>
+          <h3>太魯閣・東海岸馬拉松</h3>
+          <p>擔任馬拉松義工，在路上服務每一位跑者。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-content reveal">
+    <p class="section-label">Contact</p>
+    <h2 class="section-h2">一起出發<br><em>探索吧！</em></h2>
+    <p>歡迎加入小星球學堂的官方 Line，<br>了解更多課程與活動資訊。</p>
+    <a href="https://lin.ee/rgSSGG2" target="_blank" class="btn-main">加入官方 Line</a>
+  </div>
+  <div class="cta-image reveal">
+    <div class="img-fill">
+      <!-- 教學/戶外活動照，建議尺寸 800×600px -->
+      <img src="images/cta.jpg" alt="聯絡我們" />
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">
+    Little Planet Academy
+    <span>小星球學堂</span>
+  </a>
+  <div class="footer-right">
+    <a href="https://lin.ee/rgSSGG2" target="_blank">官方 Line</a>
+    <p class="footer-copy">© 2026 小星球學堂 Little Planet Academy</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
