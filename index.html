@@ -276,7 +276,10 @@
     }
     @media (min-width: 768px) { .kids-videos { flex: 2; min-width: 0; } }
     .video-bottom-row {
-      display: grid; grid-template-columns: 1fr 1fr; gap: .875rem;
+      display: grid; grid-template-columns: 1fr; gap: .875rem;
+    }
+    @media (min-width: 560px) {
+      .video-bottom-row { grid-template-columns: 1fr 1fr; }
     }
     .kids-videos .video-label {
       font-size: .95rem; font-weight: 700; letter-spacing: .1em;
