@@ -1,0 +1,17 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude Code tooling
+.claude/
+.agents/
+skills-lock.json
+
+# Design artifacts (keep in repo if you want version-controlled briefs)
+# .design/

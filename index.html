@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小星球學堂｜大腦情緒導航課</title>
+  <link rel="icon" href="assets/img/unnamed.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== TOKENS ===== */
+    :root {
+      --cream:         #F7F3EB;
+      --cream-dark:    #EDE8DC;
+      --cream-light:   #FDFAF4;
+      --warm-dark:     #3B2F2A;
+      --golden:        #E8A530;
+      --golden-pale:   #FFF4CC;
+      --coral:         #D9714E;
+      --coral-dark:    #C05D3A;
+      --coral-pale:    #FFE5DD;
+      --sage:          #7AAA8A;
+      --sage-pale:     #E8F4E8;
+      --sky:           #5B8FB9;
+      --sky-pale:      #E8EEFF;
+      --lavender:      #B5A5C8;
+      --lavender-pale: #F0E8FF;
+      --text:          #3B2F2A;
+      --text-muted:    #7A6C5D;
+      --shadow-sm:     3px 3px 0 rgba(59,47,42,.12);
+      --shadow-md:     5px 5px 0 rgba(59,47,42,.16);
+      --shadow-lg:     8px 8px 0 rgba(59,47,42,.18);
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+
+    /* ===== TYPE ===== */
+    h1, h2, h3 { font-family: 'Noto Serif TC', serif; line-height: 1.35; }
+    h1 { font-size: clamp(1.875rem, 5.5vw, 3.25rem); color: var(--warm-dark); }
+    h2 { font-size: clamp(1.5rem,   4vw,   2.25rem); color: var(--warm-dark); }
+    h3 { font-size: clamp(1.05rem,  2.5vw, 1.25rem); color: var(--warm-dark); }
+    p  { color: var(--text-muted); line-height: 1.85; }
+
+    /* ===== LAYOUT ===== */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: 'Noto Sans TC', sans-serif; font-weight: 700;
+      text-decoration: none; border: 2.5px solid var(--warm-dark);
+      border-radius: 50px; cursor: pointer; white-space: nowrap;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .btn-md { padding: .7rem 1.4rem;  font-size: 1rem; }
+    .btn-lg { padding: 1rem  2.25rem; font-size: 1.125rem; }
+    .btn-coral { background: var(--coral); color: #fff; box-shadow: var(--shadow-md); }
+    .btn-coral:hover  { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 rgba(59,47,42,.22); }
+    .btn-coral:active { transform: translate(1px,1px);   box-shadow: var(--shadow-sm); }
+    .btn-white { background: #fff; color: var(--coral-dark); box-shadow: 5px 5px 0 rgba(0,0,0,.14); }
+    .btn-white:hover  { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 rgba(0,0,0,.18); }
+
+    /* LINE icon */
+    .line-icon { width: 22px; height: 22px; flex-shrink: 0; }
+
+    /* ===== SECTION LABEL ===== */
+    .section-label {
+      display: inline-block; font-size: 1rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--coral); margin-bottom: .625rem;
+    }
+
+    /* ===== NAV ===== */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--cream); border-bottom: 2px solid var(--warm-dark);
+      padding: .875rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 1rem;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: .5rem;
+      font-family: 'Noto Serif TC', serif; font-size: 1.125rem; font-weight: 700;
+      color: var(--warm-dark); text-decoration: none; flex-shrink: 0;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: .125rem;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a {
+      display: block; padding: .375rem .75rem;
+      font-size: .875rem; font-weight: 500; white-space: nowrap;
+      color: var(--text-muted); text-decoration: none;
+      border-radius: 50px;
+      transition: color .15s ease, background .15s ease;
+    }
+    .nav-links a:hover { color: var(--warm-dark); background: var(--cream-dark); }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: calc(100svh - 58px);
+      padding: 3.5rem 1.5rem 2rem;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-inner {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 2.5rem; width: 100%; max-width: 1100px;
+    }
+    @media (min-width: 860px) {
+      .hero-inner {
+        flex-direction: row; align-items: center;
+        text-align: left; gap: 3rem;
+      }
+    }
+    .hero-text { flex: 1; display: flex; flex-direction: column; align-items: center; }
+    @media (min-width: 860px) { .hero-text { align-items: flex-start; } }
+    .hero-badge {
+      display: inline-block; background: var(--golden); color: var(--warm-dark);
+      font-size: .875rem; font-weight: 700; letter-spacing: .08em;
+      padding: .375rem 1.125rem; border-radius: 50px;
+      border: 2px solid var(--warm-dark); margin-bottom: 1.5rem;
+    }
+    .hero h1    { margin: 0 auto 1.25rem; }
+    @media (min-width: 860px) { .hero h1 { margin: 0 0 1.25rem; } }
+    .hero-lead  { font-size: 1.125rem; max-width: 540px; margin: 0 auto .75rem; }
+    .hero-note  { font-size: 1rem;     max-width: 520px; margin: 0 auto 2.25rem; }
+    @media (min-width: 860px) {
+      .hero-lead { margin: 0 0 .75rem; }
+      .hero-note { margin: 0 0 2.25rem; }
+    }
+    .hero-illus { width: min(400px,88vw); margin: 2rem auto 0; animation: float 5s ease-in-out infinite; }
+    /* Shorts video in hero */
+    .hero-shorts {
+      flex-shrink: 0; width: min(300px, 70vw);
+      display: flex; flex-direction: column; align-items: center; gap: .75rem;
+      align-self: center; margin: 0 auto;
+    }
+    @media (min-width: 860px) { .hero-shorts { width: 260px; margin: 0; } }
+    .hero-shorts-wrap {
+      position: relative; width: 100%; padding-bottom: 177.78%; /* 9:16 */
+      border-radius: 16px; overflow: hidden;
+      border: 2.5px solid var(--warm-dark); box-shadow: var(--shadow-lg);
+    }
+    .hero-shorts-wrap iframe {
+      position: absolute; inset: 0; width: 100%; height: 100%; border: none;
+    }
+    .hero-shorts-label {
+      font-size: .75rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+
+    .deco-star { position: absolute; pointer-events: none; animation: twinkle 3s ease-in-out infinite; }
+
+    @keyframes float   { 0%,100% { transform: translateY(0); }   50% { transform: translateY(-12px); } }
+    @keyframes twinkle { 0%,100% { opacity:.7;transform:scale(1);} 50% { opacity:.3;transform:scale(.75);} }
+
+    /* ===== WAVE DIVIDERS ===== */
+    .wave     { display: block; width: 100%; overflow: hidden; line-height: 0; }
+    .wave svg { display: block; width: 100%; }
+
+    /* ===== ABILITIES ===== */
+    .abilities-section { background: var(--cream-light); padding: 5rem 0; }
+    .section-heading   { text-align: center; margin-bottom: 3rem; }
+    .abilities-grid    { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+    @media (min-width:600px) { .abilities-grid { grid-template-columns: 1fr 1fr; } }
+    .ability-card {
+      background: #fff; border: 2.5px solid var(--warm-dark); border-radius: 20px;
+      padding: 1.875rem; box-shadow: var(--shadow-md);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .ability-card:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 rgba(59,47,42,.18); }
+    .ability-icon  { width: 56px; height: 56px; margin-bottom: 1rem; }
+    .ability-card h3 { margin-bottom: .875rem; }
+    .ability-list  { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
+    .ability-list li {
+      display: flex; align-items: flex-start; gap: .5rem;
+      font-size: 1rem; color: var(--text-muted); line-height: 1.6;
+    }
+    .ability-list li::before { content:'✦'; color:var(--golden); font-size:.75rem; flex-shrink:0; margin-top:.25rem; }
+
+    /* ===== TEACHER ===== */
+    .teacher-section { background: var(--cream); padding: 5rem 0; }
+    .teacher-inner   {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 2.5rem;
+    }
+    @media (min-width:768px) {
+      .teacher-inner { flex-direction: row; align-items: center; gap: 3.5rem; }
+    }
+    .teacher-photo-wrap  { flex: 1; min-width: 0; width: 100%; max-width: min(320px, 80vw); margin: 0 auto; }
+    @media (min-width:768px) { .teacher-photo-wrap { flex: 1; max-width: none; margin: 0; } }
+    .teacher-photo-frame { position: relative; }
+    .teacher-photo-frame img {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top;
+      border-radius: 20px; border: 3px solid var(--warm-dark); box-shadow: var(--shadow-lg);
+    }
+    .teacher-content     { flex: 2; min-width: 0; }
+    .teacher-content h2  { margin-bottom: 1.25rem; }
+    .teacher-content p   { margin-bottom: .875rem; }
+    .teacher-pullquote {
+      margin-top: 2rem;
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1rem, 2.5vw, 1.125rem);
+      color: var(--warm-dark); line-height: 2;
+    }
+
+    /* ===== KIDS SECTION ===== */
+    .kids-section  { background: var(--cream-dark); padding: 5rem 0; }
+    .kids-section > .container { max-width: 1100px; margin: 0 auto; }
+    .kids-heading  { text-align: center; margin-bottom: 2.5rem; }
+    .kids-body {
+      display: flex; flex-direction: column; gap: 2rem; align-items: stretch;
+    }
+    @media (min-width: 768px) {
+      .kids-body { flex-direction: row; align-items: flex-start; gap: 2.5rem; }
+    }
+    /* Left: scattered paper notes */
+    .kids-left { flex: 1; min-width: 0; padding: .5rem 0; }
+    .kids-quotes { display: flex; flex-direction: column; gap: .875rem; }
+    .kids-q {
+      position: relative;
+      padding: 1.5rem 1.25rem 1.125rem;
+      border-radius: 14px;
+      font-size: 1rem; line-height: 1.85;
+      color: var(--warm-dark);
+      background: #fefdf6;
+      border: 1px solid #e0d8cc;
+      box-shadow: 2px 4px 10px rgba(59,47,42,.12);
+      transition: transform .25s ease, box-shadow .25s ease;
+      will-change: transform;
+    }
+    /* washi tape strip */
+    .kids-q::before {
+      content: '';
+      position: absolute; top: -7px; left: 50%;
+      transform: translateX(-50%) rotate(-1.5deg);
+      width: 52px; height: 16px;
+      border-radius: 1px;
+      opacity: .75;
+    }
+    .kids-q:nth-child(1)::before { background: #f5c87a; transform: translateX(-50%) rotate(-2deg); }
+    .kids-q:nth-child(2)::before { background: #f0a8a0; transform: translateX(-50%) rotate(1.5deg); }
+    .kids-q:nth-child(3)::before { background: #9ecfaf; transform: translateX(-50%) rotate(-1deg); }
+    .kids-q:nth-child(4)::before { background: #8db8d8; transform: translateX(-50%) rotate(2deg); }
+    .kids-q:nth-child(5)::before { background: #c8aed8; transform: translateX(-50%) rotate(-1.5deg); }
+    .kids-q:hover { transform: rotate(0deg) translateY(-3px) !important; box-shadow: 3px 6px 16px rgba(59,47,42,.16); }
+    .kids-q:nth-child(1) { transform: rotate(-1.5deg); }
+    .kids-q:nth-child(2) { transform: rotate(1.2deg);  }
+    .kids-q:nth-child(3) { transform: rotate(-1.8deg); }
+    .kids-q:nth-child(4) { transform: rotate(1.5deg);  }
+    .kids-q:nth-child(5) { transform: rotate(-.75deg); }
+    @media (min-width: 768px) {
+      .kids-q:nth-child(1) { margin-right: 1.25rem; }
+      .kids-q:nth-child(2) { margin-left:  1.25rem; }
+      .kids-q:nth-child(3) { margin-right: .75rem;  }
+      .kids-q:nth-child(4) { margin-left:  .75rem;  }
+    }
+    /* Right: YouTube videos */
+    .kids-videos {
+      width: 100%;
+      display: flex; flex-direction: column; gap: 1.25rem;
+    }
+    @media (min-width: 768px) { .kids-videos { flex: 1; min-width: 0; } }
+    .video-bottom-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: .875rem;
+    }
+    .kids-videos .video-label {
+      font-size: .75rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--coral); margin-bottom: .5rem;
+    }
+    .video-wrap {
+      position: relative; width: 100%; padding-bottom: 56.25%;
+      border-radius: 14px; overflow: hidden;
+      border: 2.5px solid var(--warm-dark); box-shadow: var(--shadow-md);
+      display: block; text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .video-wrap:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 rgba(59,47,42,.18); }
+    .video-wrap img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .video-play {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,.18);
+      transition: background .18s ease;
+    }
+    .video-wrap:hover .video-play { background: rgba(0,0,0,.32); }
+    .video-play svg { width: 52px; height: 52px; filter: drop-shadow(0 2px 6px rgba(0,0,0,.4)); }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-section { background: var(--cream-light); padding: 5rem 0; }
+    .testimonials-grid    { display: grid; grid-template-columns: 1fr; gap: 1.125rem; margin-top: 3rem; }
+    @media (min-width:600px) { .testimonials-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width:960px) { .testimonials-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .t-card {
+      background: #fff; border: 1.5px solid var(--cream-dark);
+      border-radius: 16px; padding: 1.625rem; box-shadow: var(--shadow-sm);
+    }
+    .t-quote-mark { font-family: 'Noto Serif TC',serif; font-size: 2.5rem; color: var(--golden); line-height: .6; display: block; margin-bottom: .875rem; }
+    .t-body  { font-size: 1rem; line-height: 1.85; color: var(--text-muted); margin-bottom: 1rem; }
+    .t-attr  { font-size: .875rem; font-weight: 700; color: var(--coral); }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      background: var(--coral); padding: 6rem 1.5rem;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-section h2 { color: #fff; max-width: 700px; margin: 0 auto 1rem; }
+    .cta-section p  { color: rgba(255,255,255,.96); font-size: 1.125rem; max-width: 460px; margin: 0 auto 2.25rem; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--warm-dark); color: rgba(255,255,255,.55);
+      padding: 2.5rem 1.5rem; text-align: center; font-size: .875rem;
+    }
+    .footer-logo { font-family: 'Noto Serif TC',serif; font-size: 1.25rem; font-weight: 700; color: var(--golden); margin-bottom: .5rem; }
+    .footer p + p { margin-top: .25rem; }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: .1s; }
+    .reveal-d2 { transition-delay: .2s; }
+    .reveal-d3 { transition-delay: .3s; }
+    .reveal-d4 { transition-delay: .4s; }
+
+    /* ===== REDUCED MOTION ===== */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-illus, .deco-star { animation: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-logo" aria-label="小星球學堂 首頁">
+    <img src="assets/img/unnamed.png" width="28" height="28" alt="" style="border-radius:4px;object-fit:contain;" aria-hidden="true">
+    小星球學堂
+  </a>
+  <nav class="nav-links" aria-label="頁面導覽">
+    <a href="#abilities">課程核心</a>
+    <a href="#teacher">關於老師</a>
+    <a href="#kids">孩子的聲音</a>
+    <a href="#testimonials">家長回饋</a>
+    <a href="#cta">立即諮詢</a>
+  </nav>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="deco-star" style="top:10%;left:4%;width:22px;opacity:.65;animation-delay:0s"   viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1l2.4 6.5H20l-5.7 4.2 2.2 6.5L10 14.1l-6.5 4.1 2.2-6.5L0 7.5h7.6z" fill="#E8A530"/></svg>
+  <svg class="deco-star" style="top:14%;right:6%;width:15px;opacity:.55;animation-delay:1s"  viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1l2.4 6.5H20l-5.7 4.2 2.2 6.5L10 14.1l-6.5 4.1 2.2-6.5L0 7.5h7.6z" fill="#D9714E"/></svg>
+  <svg class="deco-star" style="top:72%;left:3%;width:18px;opacity:.5;animation-delay:2s"    viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1l2.4 6.5H20l-5.7 4.2 2.2 6.5L10 14.1l-6.5 4.1 2.2-6.5L0 7.5h7.6z" fill="#7AAA8A"/></svg>
+  <svg class="deco-star" style="top:78%;right:4%;width:13px;opacity:.45;animation-delay:.6s" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1l2.4 6.5H20l-5.7 4.2 2.2 6.5L10 14.1l-6.5 4.1 2.2-6.5L0 7.5h7.6z" fill="#5B8FB9"/></svg>
+  <svg class="deco-star" style="top:50%;right:2%;width:10px;opacity:.35;animation-delay:1.8s" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1l2.4 6.5H20l-5.7 4.2 2.2 6.5L10 14.1l-6.5 4.1 2.2-6.5L0 7.5h7.6z" fill="#B5A5C8"/></svg>
+
+  <div class="hero-inner">
+    <!-- Left: text + CTA -->
+    <div class="hero-text">
+      <span class="hero-badge">✦ 大腦情緒導航課</span>
+      <h1>將情緒風暴<br>蓄勢為成長動力</h1>
+      <p class="hero-lead">當孩子被情緒淹沒，不是他不乖，而是他的大腦正在「求救」。<br>情緒不是敵人，是孩子內心在說話。</p>
+      <p class="hero-note">《大腦情緒導航課》用創意遊戲、角色扮演，<br>帶孩子看見情緒、調節情緒、表達情緒，<br>幫孩子建立全腦協同的情緒能力，<br>把委屈與憤怒，化為成長前行的力量。</p>
+      <a href="https://lin.ee/rgSSGG2" class="btn btn-lg btn-coral" target="_blank" rel="noopener noreferrer">
+        <svg class="line-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.41-.101-.534-.28l-2.398-3.361v3.013c0 .345-.282.63-.63.63-.344 0-.629-.285-.629-.63V8.108c0-.27.172-.51.43-.595.06-.023.136-.033.198-.033.212 0 .411.1.534.28l2.396 3.361V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.628-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.07 9.436-6.971C23.176 14.393 24 12.458 24 10.314"/>
+        </svg>
+        加入 LINE 諮詢
+      </a>
+    </div>
+
+    <!-- Right: Shorts video -->
+    <div class="hero-shorts">
+      <div class="hero-shorts-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/hnOCHFdX-co?si=T5P5uHjRShYENz6L&rel=0"
+          title="小星球學堂 Shorts"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
+      <p class="hero-shorts-label">▶ 課程介紹</p>
+    </div>
+  </div>
+
+  <!-- Hand-drawn solar system illustration -->
+  <div class="hero-illus" aria-hidden="true">
+    <svg viewBox="0 0 420 310" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Orbits -->
+      <ellipse cx="210" cy="155" rx="188" ry="78" stroke="#3B2F2A" stroke-width="1.5" stroke-dasharray="7 4" opacity=".3"/>
+      <ellipse cx="210" cy="155" rx="128" ry="50" stroke="#3B2F2A" stroke-width="1.5" opacity=".28"/>
+      <ellipse cx="210" cy="155" rx="74"  ry="28" stroke="#3B2F2A" stroke-width="1.5" opacity=".25"/>
+      <!-- Sun -->
+      <circle cx="210" cy="155" r="30" fill="#E8A530" stroke="#3B2F2A" stroke-width="2"/>
+      <circle cx="204" cy="150" r="2" fill="#3B2F2A"/>
+      <circle cx="216" cy="150" r="2" fill="#3B2F2A"/>
+      <path d="M205 158 Q210 163 215 158" stroke="#3B2F2A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      <!-- Rays -->
+      <line x1="210" y1="117" x2="210" y2="108" stroke="#3B2F2A" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="210" y1="193" x2="210" y2="202" stroke="#3B2F2A" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="172" y1="155" x2="163" y2="155" stroke="#3B2F2A" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="248" y1="155" x2="257" y2="155" stroke="#3B2F2A" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="183" y1="128" x2="177" y2="122" stroke="#3B2F2A" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="237" y1="182" x2="243" y2="188" stroke="#3B2F2A" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="237" y1="128" x2="243" y2="122" stroke="#3B2F2A" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="183" y1="182" x2="177" y2="188" stroke="#3B2F2A" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- Planets -->
+      <circle cx="284" cy="155" r="11" fill="#D9714E" stroke="#3B2F2A" stroke-width="1.8"/>
+      <circle cx="210" cy="102" r="9"  fill="#7AAA8A" stroke="#3B2F2A" stroke-width="1.8"/>
+      <circle cx="370" cy="190" r="15" fill="#5B8FB9" stroke="#3B2F2A" stroke-width="2"/>
+      <ellipse cx="370" cy="190" rx="23" ry="7" stroke="#3B2F2A" stroke-width="1.5" fill="none" transform="rotate(-18 370 190)"/>
+      <circle cx="52"  cy="118" r="10" fill="#B5A5C8" stroke="#3B2F2A" stroke-width="1.8"/>
+      <circle cx="210" cy="183" r="6"  fill="#EDE8DC" stroke="#3B2F2A" stroke-width="1.5"/>
+      <circle cx="24"  cy="162" r="7"  fill="#E8C48A" stroke="#3B2F2A" stroke-width="1.5"/>
+      <circle cx="82"  cy="155" r="8"  fill="#F0A070" stroke="#3B2F2A" stroke-width="1.5"/>
+      <!-- Scattered dots -->
+      <circle cx="90"  cy="48"  r="2.5" fill="#E8A530" opacity=".75"/>
+      <circle cx="330" cy="62"  r="2"   fill="#D9714E" opacity=".65"/>
+      <circle cx="385" cy="252" r="2"   fill="#7AAA8A" opacity=".65"/>
+      <circle cx="38"  cy="218" r="1.8" fill="#5B8FB9" opacity=".6"/>
+      <circle cx="160" cy="22"  r="2"   fill="#E8A530" opacity=".5"/>
+      <circle cx="108" cy="260" r="2"   fill="#D9714E" opacity=".45"/>
+      <circle cx="400" cy="80"  r="1.5" fill="#B5A5C8" opacity=".5"/>
+      <!-- Sparkles -->
+      <path d="M340 38 L342 44 L348 46 L342 48 L340 54 L338 48 L332 46 L338 44Z" fill="#E8A530" opacity=".8"/>
+      <path d="M58  68 L59.5 72.5 L64 74 L59.5 75.5 L58 80 L56.5 75.5 L52 74 L56.5 72.5Z" fill="#D9714E" opacity=".6"/>
+      <path d="M396 112 L397 115 L400 116 L397 117 L396 120 L395 117 L392 116 L395 115Z" fill="#7AAA8A" opacity=".7"/>
+      <!-- Comet -->
+      <path d="M155 35 Q148 40 130 55" stroke="#E8A530" stroke-width="1.2" stroke-linecap="round" opacity=".4" stroke-dasharray="3 3"/>
+      <circle cx="155" cy="35" r="3" fill="#E8A530" opacity=".6"/>
+    </svg>
+  </div>
+</section>
+
+
+
+
+<!-- ABILITIES -->
+<section class="abilities-section" id="abilities">
+  <div class="container">
+    <div class="section-heading reveal">
+      <span class="section-label">課程核心</span>
+      <h2>孩子將獲得的四大關鍵能力</h2>
+    </div>
+    <div class="abilities-grid">
+
+      <div class="ability-card reveal reveal-d1">
+        <svg class="ability-icon" viewBox="0 0 56 56" fill="none" aria-hidden="true">
+          <circle cx="28" cy="28" r="26" fill="#FFF4CC" stroke="#3B2F2A" stroke-width="2"/>
+          <path d="M21 33 Q17 29 18 24 Q20 18 25.5 19.5 Q27 15 31 15.5 Q36 16 37 21 Q41 21 41 26 Q43 31 39 34 Q37 39 31 38 Q25 39 21 33Z" stroke="#3B2F2A" stroke-width="1.8" fill="#E8A530" fill-opacity=".5"/>
+          <path d="M28 21 V34" stroke="#3B2F2A" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M22 26 Q25 27.5 28 26" stroke="#3B2F2A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+          <path d="M28 26 Q31 25 34 27" stroke="#3B2F2A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+          <path d="M22 30 Q25 31.5 28 30" stroke="#3B2F2A" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        </svg>
+        <h3>大腦能力發展</h3>
+        <ul class="ability-list">
+          <li>身心整合與內在覺察</li>
+          <li>靈活思考與認知彈性</li>
+          <li>專注力與執行力提升</li>
+          <li>創意思維與情緒表達</li>
+        </ul>
+      </div>
+
+      <div class="ability-card reveal reveal-d2">
+        <svg class="ability-icon" viewBox="0 0 56 56" fill="none" aria-hidden="true">
+          <circle cx="28" cy="28" r="26" fill="#FFE5DD" stroke="#3B2F2A" stroke-width="2"/>
+          <path d="M28 39 Q19 35 19 27 Q19 20 25 18 Q23 22 26.5 23 Q25.5 18 30 15 Q32.5 22 30 25 Q35 21 35 27 Q37 33 28 39Z" stroke="#3B2F2A" stroke-width="1.8" fill="#D9714E" fill-opacity=".55"/>
+          <circle cx="28" cy="23" r="2" fill="white" fill-opacity=".7"/>
+        </svg>
+        <h3>成長內驅力與心理韌性</h3>
+        <ul class="ability-list">
+          <li>自我方向感與目標力</li>
+          <li>抗壓能力與挫折耐受力</li>
+          <li>自我激勵能力</li>
+          <li>自我效能感</li>
+        </ul>
+      </div>
+
+      <div class="ability-card reveal reveal-d3">
+        <svg class="ability-icon" viewBox="0 0 56 56" fill="none" aria-hidden="true">
+          <circle cx="28" cy="28" r="26" fill="#E8F4E8" stroke="#3B2F2A" stroke-width="2"/>
+          <circle cx="28" cy="20" r="6.5" stroke="#3B2F2A" stroke-width="1.8" fill="#7AAA8A" fill-opacity=".55"/>
+          <path d="M17 42 Q17 31 28 31 Q39 31 39 42" stroke="#3B2F2A" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+          <path d="M28 34 L29 37 L32 37 L29.5 39 L30.5 42 L28 40.5 L25.5 42 L26.5 39 L24 37 L27 37Z" fill="#E8A530" stroke="#3B2F2A" stroke-width=".8"/>
+        </svg>
+        <h3>人格與自我發展</h3>
+        <ul class="ability-list">
+          <li>自我認識與人際邊界感建立</li>
+          <li>自我接納與內在安全感</li>
+          <li>思維轉化能力</li>
+        </ul>
+      </div>
+
+      <div class="ability-card reveal reveal-d4">
+        <svg class="ability-icon" viewBox="0 0 56 56" fill="none" aria-hidden="true">
+          <circle cx="28" cy="28" r="26" fill="#E8EEFF" stroke="#3B2F2A" stroke-width="2"/>
+          <circle cx="20" cy="21" r="5.5" stroke="#3B2F2A" stroke-width="1.8" fill="#5B8FB9" fill-opacity=".55"/>
+          <circle cx="36" cy="21" r="5.5" stroke="#3B2F2A" stroke-width="1.8" fill="#B5A5C8" fill-opacity=".55"/>
+          <path d="M10 39 Q10 30 20 30 Q28 30 28 34" stroke="#3B2F2A" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+          <path d="M46 39 Q46 30 36 30 Q28 30 28 34" stroke="#3B2F2A" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+          <path d="M25 34 Q28 38 31 34 L28 31Z" fill="#D9714E" stroke="#3B2F2A" stroke-width="1"/>
+        </svg>
+        <h3>社會情緒能力</h3>
+        <ul class="ability-list">
+          <li>團隊協作能力</li>
+          <li>衝突協商與解決能力</li>
+          <li>非語言溝通的感受解讀</li>
+          <li>同理心</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- WAVE -->
+<div class="wave" style="background:var(--cream)">
+  <svg viewBox="0 0 1440 64" preserveAspectRatio="none">
+    <path d="M0,32 C240,64 480,0 720,32 C960,64 1200,0 1440,32 L1440,0 L0,0 Z" fill="#FDFAF4"/>
+  </svg>
+</div>
+
+
+<!-- TEACHER -->
+<section class="teacher-section" id="teacher">
+  <div class="teacher-inner container">
+    <div class="teacher-photo-wrap reveal">
+      <div class="teacher-photo-frame">
+        <img src="assets/img/photo_1.png" alt="宛廷老師照片">
+      </div>
+    </div>
+    <div class="teacher-content reveal reveal-d1">
+      <span class="section-label">關於老師</span>
+      <h2>12年陪伴上千個孩子<br>我看見情緒力才是真正的關鍵</h2>
+      <p>我是宛廷老師。<br>12年來，從體制內的國小教室、海外志工，到體制外的實驗小學，我陪著上千個孩子，走過他們最重要的童年時光。</p>
+      <p>我見過太多孩子，成績很好，卻一遇挫折就崩潰；明明心地善良，卻不知道怎麼表達內心的感受，只能用哭鬧、攻擊，或是沉默，來回應這個世界。</p>
+        <strong style="color:var(--warm-dark)"><br>那些畫面，讓我開始思考：孩子真正需要的，是什麼？</strong></p>
+      <div class="teacher-science">
+        <p>腦科學研究告訴我們：情緒爆發時，杏仁核像警報器狂響，負責理性思考的前額葉立刻斷線，6～12歲是人格發展的關鍵期，情緒調節能力就像地基一樣，影響一生的學習、人際關係與幸福感。</p>
+      </div>
+      <p>所以，我設計了這套「全腦協同」情緒課程——不是貼標籤，不說「你要乖」，而是透過黏土、冷靜瓶、角色扮演等活動，陪孩子學會看見情緒、調節情緒、表達情緒。</p>
+      <p>我希望每個孩子都學會對自己的情緒說：「我看見你了，我知道你想要什麼。」</p>
+      <p class="teacher-pullquote">「真正讓孩子走得長遠的，從來不是成績，而是穩定堅韌的內在力量。」</p>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave" style="background:var(--cream-dark)">
+  <svg viewBox="0 0 1440 64" preserveAspectRatio="none">
+    <path d="M0,22 C200,52 420,0 640,28 C860,54 1060,4 1280,26 C1360,34 1410,18 1440,22 L1440,0 L0,0 Z" fill="#F7F3EB"/>
+  </svg>
+</div>
+
+
+<!-- KIDS NOTES -->
+<section class="kids-section" id="kids">
+  <div class="container">
+  <div class="kids-heading reveal">
+    <span class="section-label">孩子的聲音</span>
+    <h2>孩子給宛廷老師的悄悄話</h2>
+  </div>
+  <div class="kids-body">
+    <!-- Left: quote grid -->
+    <div class="kids-left">
+      <div class="kids-quotes">
+        <div class="kids-q">謝謝您讓我們的心變得更堅強，也謝謝您成為我心靈的守護者。</div>
+        <div class="kids-q">班上雖然有總總離奇的問題，但老師您就如同一縷清風，撫平了暴風雨。環島時，雖說是一縷清風，但帶領我們的，卻是一陣刻畫著無所畏懼的徐風，既溫暖又堅定，謝謝老師您，成為了我們的老師。</div>
+        <div class="kids-q">是您幫助我發現我的潛能，感謝宛廷老師對我的信任與激勵，妳是我見過最可愛的老師。</div>
+        <div class="kids-q">不論失敗或成功，您總是用愛包容著我。謝謝宛廷老師給我那麼多耐心與愛。</div>
+        <div class="kids-q">謝謝您這麼用心的教導，是您讓我學會面對困難，如果沒有妳的話，就不會有現在開心、自信的我。</div>
+      </div>
+    </div>
+    <!-- Right: YouTube videos -->
+    <div class="kids-videos reveal reveal-d1">
+      <p class="video-label">課程實況</p>
+      <!-- Top video -->
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/TSrPpd1tfpw?si=TZhJqy9rUi1UQzYr&rel=0"
+          title="小星球學堂課程實況 3"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen loading="lazy"
+          style="position:absolute;inset:0;width:100%;height:100%;border:none;">
+        </iframe>
+      </div>
+      <!-- Bottom two videos -->
+      <div class="video-bottom-row">
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/pQ1c-rV5ZxI?si=6zbKFB6oCYG125yQ&rel=0"
+            title="小星球學堂課程實況 1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen loading="lazy"
+            style="position:absolute;inset:0;width:100%;height:100%;border:none;">
+          </iframe>
+        </div>
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/8ilzwfddhGg?si=CR4KS1Ycb2_NsM9G&rel=0"
+            title="小星球學堂課程實況 2"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen loading="lazy"
+            style="position:absolute;inset:0;width:100%;height:100%;border:none;">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+
+<!-- WAVE -->
+<div class="wave" style="background:var(--cream-light)">
+  <svg viewBox="0 0 1440 64" preserveAspectRatio="none">
+    <path d="M0,32 C240,64 480,0 720,32 C960,64 1200,0 1440,32 L1440,0 L0,0 Z" fill="#EDE8DC"/>
+  </svg>
+</div>
+
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="container">
+    <div class="section-heading reveal">
+      <span class="section-label">家長回饋</span>
+      <h2>家長真實回饋</h2>
+    </div>
+    <div class="testimonials-grid">
+
+      <div class="t-card reveal reveal-d1">
+        <span class="t-quote-mark" aria-hidden="true">"</span>
+        <p class="t-body">二寶很喜歡黏土的手感，現在回家都把輕黏土當作拉麵來回拉。大寶看書時偶爾捏黏土，感覺增加了孩子的定性。課程設計很用心，孩子課後也說上課很有趣。</p>
+        <p class="t-attr">胡媽媽・大班、四年級男孩的家長</p>
+      </div>
+
+      <div class="t-card reveal reveal-d2">
+        <span class="t-quote-mark" aria-hidden="true">"</span>
+        <p class="t-body">上完課後，孩子比較能夠表達自己的感受，也能清楚說出當下的心情，讓我在陪伴他的時候更容易瞭解他。小B很喜歡靜心瓶，睡覺時也要帶著。</p>
+        <p class="t-attr">吳媽媽・大班男孩的家長</p>
+      </div>
+
+      <div class="t-card reveal reveal-d3">
+        <span class="t-quote-mark" aria-hidden="true">"</span>
+        <p class="t-body">課程過後，孩子的覺察能力明顯提升，有效幫助我們在溝通和情緒表達上更加順暢。透過這次課程，讓我明白他們對生活的感受原來是如此強烈。</p>
+        <p class="t-attr">葉媽媽・一年級、三年級女孩的家長</p>
+      </div>
+
+      <div class="t-card reveal">
+        <span class="t-quote-mark" aria-hidden="true">"</span>
+        <p class="t-body">孩子以前脾氣一上來就用動手的方式表達，但經過一次次練習與引導，現在能先冷靜下來再面對事情了，真的進步很多。</p>
+        <p class="t-attr">陳媽媽・五年級男孩的家長</p>
+      </div>
+
+      <div class="t-card reveal reveal-d1">
+        <span class="t-quote-mark" aria-hidden="true">"</span>
+        <p class="t-body">孩子有過動傾向，以前覺得靠藥物才能控制。透過老師耐心引導，他現在理解自己有能力坐得住，藥物也慢慢減少了，更珍貴的是孩子對自己有了信心。</p>
+        <p class="t-attr">謝媽媽・六年級男孩的家長</p>
+      </div>
+
+      <div class="t-card reveal reveal-d2">
+        <span class="t-quote-mark" aria-hidden="true">"</span>
+        <p class="t-body">回頭看這幾年的成長與蛻變，對老師真的有道不盡的感謝。謝謝您的包容，願意傾聽他的聲音，也謝謝老師總是站在我身旁給我前行的力量。能遇見您，我們都很幸運。</p>
+        <p class="t-attr">陳媽媽・五年級男孩的家長</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <svg style="position:absolute;top:18px;left:28px;width:30px;opacity:.3;pointer-events:none"   viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1l2.4 6.5H20l-5.7 4.2 2.2 6.5L10 14.1l-6.5 4.1 2.2-6.5L0 7.5h7.6z" fill="white"/></svg>
+  <svg style="position:absolute;bottom:28px;right:36px;width:22px;opacity:.25;pointer-events:none" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1l2.4 6.5H20l-5.7 4.2 2.2 6.5L10 14.1l-6.5 4.1 2.2-6.5L0 7.5h7.6z" fill="white"/></svg>
+  <svg style="position:absolute;top:40%;left:7%;width:18px;opacity:.2;pointer-events:none"       viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1l2.4 6.5H20l-5.7 4.2 2.2 6.5L10 14.1l-6.5 4.1 2.2-6.5L0 7.5h7.6z" fill="white"/></svg>
+  <svg style="position:absolute;top:20%;right:10%;width:14px;opacity:.2;pointer-events:none"     viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1l2.4 6.5H20l-5.7 4.2 2.2 6.5L10 14.1l-6.5 4.1 2.2-6.5L0 7.5h7.6z" fill="white"/></svg>
+
+  <h2>準備好了嗎？</h2>
+  <p>讓孩子從情緒管理開始，<br>建立一生的內在力量。</p>
+
+  <a href="https://lin.ee/rgSSGG2" class="btn btn-lg btn-white" target="_blank" rel="noopener noreferrer">
+    <svg class="line-icon" viewBox="0 0 24 24" fill="currentColor" style="color:var(--coral-dark)" aria-hidden="true">
+      <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.41-.101-.534-.28l-2.398-3.361v3.013c0 .345-.282.63-.63.63-.344 0-.629-.285-.629-.63V8.108c0-.27.172-.51.43-.595.06-.023.136-.033.198-.033.212 0 .411.1.534.28l2.396 3.361V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.628-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.07 9.436-6.971C23.176 14.393 24 12.458 24 10.314"/>
+    </svg>
+    加入 LINE 諮詢
+  </a>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p class="footer-logo">✦ 小星球學堂</p>
+  <p>大腦情緒導航課｜讓孩子建立一生的內在力量</p>
+  <p style="margin-top:1rem;opacity:.4;font-size:.75rem">© 2026 小星球學堂 All Rights Reserved</p>
+</footer>
+
+
+<script>
+  const io = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.08 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
